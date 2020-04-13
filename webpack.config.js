@@ -37,13 +37,13 @@ module.exports = {
         new webpack.DefinePlugin({
             // global app config object
             config: JSON.stringify({
-                apiUrl: 'http://localhost:4000'
+                apiUrl: 'http://cinema.lcl'
             })
         }),
 
         // workaround for warning: Critical dependency: the request of a dependency is an expression
         new webpack.ContextReplacementPlugin(
-            /\@angular(\\|\/)core(\\|\/)fesm5/,
+            /@angular([\\/])core([\\/])fesm5/,
             path.resolve(__dirname, 'src')
         )
     ],

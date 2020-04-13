@@ -20,12 +20,14 @@ export class AuthenticationService {
     }
 
     login(username, password) {
-        return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username, password })
+        return this.http.post<any>(`${config.apiUrl}/oauth`, { username, password })
             .pipe(map(user => {
+                let owner = new User();
+                owner.token = user.access_token;
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);
-                return user;
+                localStorage.setItem('currentUser', JSON.stringify(owner));
+                this.currentUserSubject.next(owner);
+                return owner;
             }));
     }
 
