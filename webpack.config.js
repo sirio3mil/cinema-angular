@@ -1,6 +1,7 @@
 ﻿const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const FaviconWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
     entry: './src/main.ts',
@@ -40,6 +41,7 @@ module.exports = {
                 apiUrl: 'http://cinema.lcl'
             })
         }),
+        new FaviconWebpackPlugin(undefined),
 
         // workaround for warning: Critical dependency: the request of a dependency is an expression
         new webpack.ContextReplacementPlugin(
